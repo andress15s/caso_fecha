@@ -3,6 +3,7 @@ package Ejecutable;
 import modelo.Fecha;
 import modelo.FechaDetallada;
 import modelo.MuestraConjunto;
+import modelo.FechaHora;
 
 public class test 
 {
@@ -44,5 +45,10 @@ public class test
         
         Object[] arr = {new Fecha(2,10,1970),new FechaDetallada(23,12,1948),new String("Esto es una cadena"), new String("34")};
         MuestraConjunto.mostrar(arr);
+
+        FechaHora miFechaHora = new FechaHora("25/2/2006", 14, 30, 10);
+        System.out.println(miFechaHora.toString());
+
+
     }
 }

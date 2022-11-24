@@ -18,10 +18,16 @@ public class FechaDetallada extends Fecha
 
     public String fechaDetallada() 
         {
-            String[] meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+            String[] meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
             
             int Mes = getMes() -1;
 
                 return "Fecha: " + getDia() + " de " + meses[Mes] + " de " + getAnio();
         }
+
+    public FechaDetallada(String s)
+        {
+           super(s);
+        }
+
 }
