@@ -1,78 +1,100 @@
 package modelo;
 
-public class Fecha{
-    /// ------------------
-    /// Atributos --------
-    /// ------------------
-    private int dia;
-    private int mes;
-    private int year;
-    private int i;
-    private String fecha;
+public class Fecha 
+{
+        protected int dia;
+        protected int mes;
+        protected int anio;
 
-    /// ------------------
-    /// Métodos ----------
-    /// ------------------
+        public Fecha(int dia, int mes, int anio) 
+        {
+                this.dia = dia;
+                this.mes = mes;
+                this.anio = anio;
+        }
 
-    /// -----------------------------------
-    /// Métodos de acceso (setter y getter)
-    /// -----------------------------------
-    public void setDia(int dia) {
-        this.dia = dia;
-    }
+        public Fecha() 
+        {
+                this.dia = 0;
+                this.mes = 0;
+                this.anio = 0;
+        }
 
-    public void setMes(int mes) {
-        this.mes = mes;
-    }
+        public Fecha(String fecha) 
+        {
+            String[] fechas = fecha.split("/");
+            this.dia = Integer.parseInt(fechas[0]);
+            this.mes = Integer.parseInt(fechas[1]);
+            this.anio = Integer.parseInt(fechas[2]);
+                
+        }
 
-    public void setYear(int year) {
-        this.year = year;
-    }
+        public int getDia() 
+        {
+                return dia;
+        }
 
-    public int getDia() {
-        return dia;
-    }
+        public int getMes() 
+        {
+                return mes;
+        }
 
-    public int getMes() {
-        return mes;
-    }
+        public int getAnio() 
+        {
+                return anio;
+        }
 
-    public int getYear() {
-        return year;
-    }
-    
-    private int fechaToDias()
-    {
-        return year * 360 + mes * 30 + dia;
-    }
+        public void setDia(int dia) 
+        {
+                this.dia = dia;
+        }
 
-    public void addDias(int d)
-    {
-        int sum = fechaToDias()+d;
-        diasToFecha(sum);
-    }
+        public void setMes(int mes) 
+        {
+                this.mes = mes;
+        }
 
-    private void diasToFecha(int i)
-    {
-        year =(int)(i/360);
-        mes = (int)(i%360/30);
-        dia = (int)(i%30);
-    }
+        public void setAnio(int anio) 
+        {
+                this.anio = anio;
+        }
 
-    /// --------------------------------------
-    /// Método sobreescrito de la clase Object
-    /// --------------------------------------
-    public String toString(){
-        return dia + "/" + mes + "/" + year;
-    }
+        public void addDias(int d)
+        {
+                int sum = fechaToDias() + d;
+                diasToFecha(sum);
+        }
 
-    /// --------------------------------------
-    /// Método sobreescrito de la clase Object
-    /// --------------------------------------
-    
-    public boolean equals(Object o){
-        Fecha otra = (Fecha)o;
-        return (dia==otra.dia) && (mes==otra.mes) && (year==otra.year);
-    }
+        private int fechaToDias()
+        {
+                return anio*360 + mes*30 + dia;
+        }
 
+        private void diasToFecha(int d)
+        {
+                int años = (d / 360);
+                int meses = (d - (años*360))/ 30;
+                int dias = (d - ((años*360)+(meses*30)));
+
+                dia = dias;
+                mes = meses;
+                anio = años;
+                
+                if (meses + mes > 12)
+                {
+                        anio = anio + 1;
+                        mes = mes - 12;
+                }
+        }
+
+        public String toString() 
+        {
+                return "Fecha: " + dia + "/" + mes + "/" + anio;
+        }
+
+        public boolean equals(Object objeto) 
+        {
+                Fecha temporal = (Fecha) objeto;
+                return (dia == temporal.dia) && (mes == temporal.mes) && (anio == temporal.anio);
+        }
 }
